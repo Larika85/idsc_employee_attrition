@@ -56,15 +56,14 @@ st.markdown("""
     .main-title {
         font-size: 3.5rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #000000 !important;
+        -webkit-text-fill-color: #000000 !important;
         text-align: center;
         margin-bottom: 0.5rem;
         animation: fadeInDown 1s ease-in, pulse 2s ease-in-out infinite;
-        text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
         letter-spacing: 2px;
+        background: none !important;
     }
     
     @keyframes pulse {
@@ -272,10 +271,7 @@ st.markdown("""
     
     /* Enhanced section headers */
     .section-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #1a1a1a !important;
         font-size: 1.8rem;
         font-weight: 700;
         margin-bottom: 2rem;
@@ -350,6 +346,25 @@ st.markdown("""
         padding-top: 2rem !important;
         padding-bottom: 0rem !important;
     }
+            
+        /* Remove extra white boxes / containers */
+    div[data-testid="stHorizontalBlock"] > div:first-child:empty,
+    div[data-testid="stHorizontalBlock"] > div:nth-child(2):empty {
+        display: none !important;
+    }
+
+    div[data-testid="stVerticalBlock"] > div:empty,
+    div[data-testid="stVerticalBlock"] > div > div:empty {
+        display: none !important;
+    }
+
+    /* Remove background color on empty column blocks */
+    div[data-testid="column"]:has(> div:empty) {
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
     
     /* Hide empty div containers that Streamlit creates */
     div[data-testid="stVerticalBlock"] > div:empty {
@@ -369,6 +384,82 @@ st.markdown("""
     html {
         scroll-behavior: smooth;
     }
+            
+    /* ===== Dark Text Theme for Better Readability ===== */
+
+    /* Main title */
+    h1, h2, h3, .headline, .dashboard-title {
+        color: #1b1b1b !important;            /* near-black */
+        text-shadow: 0px 1px 3px rgba(255,255,255,0.2); /* subtle lift */
+    }
+
+    /* Subtitle (under main title) */
+    .subtitle, .subheadline, p {
+        color: #2e2e2e !important;            /* medium-dark gray */
+    }
+
+    /* Section headers (like "Employee Information") */
+    .section-title, h4, h5, h6 {
+        color: #242424 !important;            /* slightly softer black */
+        font-weight: 700 !important;
+    }
+
+    /* "Ready to Predict" and its description */
+    .placeholder-title {
+        color: #1e1e1e !important;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+    }
+
+    .placeholder-subtitle {
+        color: #3b3b3b !important;
+        opacity: 0.9;
+    }
+            
+    /* Force dark colors on Streamlit headings */
+
+    /* Main title ("Employee Attrition Prediction Dashboard") */
+    section.main > div:first-child h1, h1, .stMarkdown h1 {
+        color: #1a1a1a !important;           /* dark gray-black */
+        text-shadow: none !important;
+    }
+
+    /* Subtitle (the line below main title) */
+    section.main > div:first-child p, .stMarkdown p {
+        color: #2c2c2c !important;
+    }
+
+    /* Section header ("Employee Information") */
+    div[data-testid="stHeading"], h2, h3, .stMarkdown h2, .stMarkdown h3 {
+        color: #202020 !important;           /* strong dark */
+        font-weight: 700 !important;
+        text-shadow: none !important;
+    }
+
+    /* "Ready to Predict" block */
+    .placeholder-title {
+        color: #121212 !important;
+
+            /* Main title ("Employee Attrition Prediction Dashboard") */
+        section.main > div:first-child h1, h1, .stMarkdown h1 {
+            color: #1a1a1a !important;           /* dark gray-black */
+            text-shadow: none !important;
+        }
+
+        /* Section header ("Employee Information") */
+        div[data-testid="stHeading"], h2, h3, .stMarkdown h2, .stMarkdown h3 {
+            color: #202020 !important;           /* strong dark */
+            font-weight: 700 !important;
+            text-shadow: none !important;
+        }
+            
+        /* Force main title to be dark - override all other rules */
+        .main-title {
+            color: #1a1a1a !important;
+            background: none !important;
+            -webkit-text-fill-color: #1a1a1a !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        }
+
     </style>
 """, unsafe_allow_html=True)
 
@@ -723,11 +814,27 @@ with col2:
             <div class="placeholder-container">
                 <div class="placeholder-icon">🔮</div>
                 <div class="placeholder-title">Ready to Predict</div>
-                <div class="placeholder-subtitle">Fill in the employee details and click the predict button</div>
+                <div class="placeholder-subtitle">
+                    Fill in the employee details and click the predict button
+                </div>
             </div>
+
+            <style>
+                /* Remove unwanted white boxes / blank divs */
+                div[data-testid="stVerticalBlock"] div:empty,
+                div[data-testid="stHorizontalBlock"] div:empty,
+                div[data-testid="column"] div:empty,
+                div:empty {
+                    display: none !important;
+                    visibility: hidden !important;
+                    background: transparent !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                }
+            </style>
         """, unsafe_allow_html=True)
-    
-    st.markdown("</div>", unsafe_allow_html=True)
 
 # ========================================
 # FOOTER
