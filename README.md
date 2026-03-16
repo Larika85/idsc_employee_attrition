@@ -4,7 +4,7 @@ A Streamlit web app to predict whether an employee is likely to stay or leave ba
 
 ## 🚀 Project Overview
 
-This project includes a production-ready Streamlit interface (`app.py`) that:
+This project includes a production-ready Streamlit interface (`app1.py`) that:
 - Loads pre-trained artifacts (`pipeline.pkl` or `preprocessor.pkl`, `lda.pkl`, `best_model.pkl`)
 - Accepts employee profile input (categorical and numeric) via UI controls
 - Applies preprocessing, LDA transform, and model prediction
@@ -60,10 +60,6 @@ Open the URL shown by Streamlit (e.g. `http://localhost:8501`).
 You can also use the deployed app directly:
 https://employee-attrition85.streamlit.app/
 
-> ⚠️ If you have multiple versions like `app1.py`, choose the file you want to run, e.g. `streamlit run app1.py`.
-
-> 🧹 `app.py.bak` is just a backup file; you can delete it if you only need the main app file.
-
 ## 🧠 How It Works
 
 1. `app.py` loads model artifacts with robust fallback logic:
@@ -94,6 +90,6 @@ https://employee-attrition85.streamlit.app/
 - Add batch inference and CSV export.
 - Add user authentication and logging for production deployment.
 
-## 🙋‍♂️ Contact
+## 🙋‍♂️ Contributions
 
-If you need help extending this app, open an issue or contact the project owner.
+Contributions are welcome! Please feel free to submit issues or pull requests.
